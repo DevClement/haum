@@ -9,9 +9,9 @@ class Laumio:
     ip -- Laumio's IP
     """
 
-    def init(self, ip):
-        self.ip = ip
-        self.url = 'http://'+str(ip)+'/api/'
+    def __init__(self, ip):
+        self.__ip = ip
+        self.__url = 'http://'+str(ip)+'/api/'
 
     def wipeOut(self):
         """ Shut down all the LED """
@@ -66,14 +66,14 @@ class Laumio:
 
     def status(self):
         """ Get the JSON Laumio status """
-        return urllib.request.urlopen(self.url).read().decode()
+        return urllib.request.urlopen(self.__url).read().decode()
 
     def _send(self, payload):
         """ Proxy to socket.socket.sendto w/ minimal error-handling """
         try:
             sock = socket.socket(socket.AF_INET, # Internet
                          socket.SOCK_DGRAM) # UDP
-            sock.sendto(payload, (self.ip, 6969))
+            sock.sendto(payload, (self.__ip, 6969))
             return 0
         except socket.error:
             return 1
@@ -85,4 +85,4 @@ class Laumio:
             sock.sendto(bytearray([ 255, rgb[0],rgb[1],rgb[2] ]), (self.__ip, port))
             return 0
         except socket.error:
-            return
+            return 1

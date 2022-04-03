@@ -1,43 +1,60 @@
 from laumio import Laumio
-from presetIp import *
-import spotify
+from presetIP import *
 import random
 import time
 
 ########## FONCTION TECHNIQUE ##########
 def getCouleur(couleur):
-	if(couleur == "rouge"):
+	if(couleur == "Rouge"):
 		return rouge
-	if(couleur == "blanc"):
+	if(couleur == "Blanc"):
 		return blanc
-	if(couleur == "jaune"):
+	if(couleur == "Jaune"):
 		return jaune
-	if(couleur == "bleu"):
+	if(couleur == "Bleu"):
 		return bleu
-	if(couleur == "vert"):
+	if(couleur == "Vert"):
 		return vert
 def padColor(angle, couleur):
 	stop()
-	if(angle<315 and angle > 45):
-		lumiere(ouestT).fillColor(getCouleur(couleur[0]))
-		lumiere(nord).fillColor(getCouleur(couleur[1]))
-		lumiere(estT).fillColor(getCouleur(couleur[2]))
-		lumiere(sud).fillColor(getCouleur(couleur[3]))
+	if(angle>315 or angle < 45):
+		print(angle)
+		print("-- " + str(getCouleur(couleur[0])))
+		listeLumiere = lumiere(ouestT)
+		fillColorL(listeLumiere,100, getCouleur(couleur[0]))
+		listeLumiere = lumiere(nord)
+		fillColorL(listeLumiere, 100, getCouleur(couleur[1]))
+		listeLumiere = lumiere(estT)
+		fillColorL(listeLumiere, 100, getCouleur(couleur[2]))
+		listeLumiere = lumiere(sud)
+		fillColorL(listeLumiere, 100, getCouleur(couleur[3]))
 	elif(angle > 45 and angle < 135):
-		lumiere(ouestT).fillColor(getCouleur(couleur[3]))
-		lumiere(nord).fillColor(getCouleur(couleur[0]))
-		lumiere(estT).fillColor(getCouleur(couleur[1]))
-		lumiere(sud).fillColor(getCouleur(couleur[2]))
+		listeLumiere = lumiere(ouestT)
+		fillColorL(listeLumiere, 100, getCouleur(couleur[3]))
+		listeLumiere = lumiere(nord)
+		fillColorL(listeLumiere, 100, getCouleur(couleur[0]))
+		listeLumiere = lumiere(estT)
+		fillColorL(listeLumiere, 100, getCouleur(couleur[1]))
+		listeLumiere = lumiere(sud)
+		fillColorL(listeLumiere, 100, getCouleur(couleur[2]))
 	elif(angle > 135 and angle < 225):
-		lumiere(ouestT).fillColor(getCouleur(couleur[2]))
-		lumiere(nord).fillColor(getCouleur(couleur[3]))
-		lumiere(estT).fillColor(getCouleur(couleur[0]))
-		lumiere(sud).fillColor(getCouleur(couleur[1]))
+		listeLumiere = lumiere(ouestT)
+		fillColorL(listeLumiere, 100, getCouleur(couleur[2]))
+		listeLumiere = lumiere(nord)
+		fillColorL(listeLumiere, 100, getCouleur(couleur[3]))
+		listeLumiere = lumiere(estT)
+		fillColorL(listeLumiere, 100, getCouleur(couleur[0]))
+		listeLumiere = lumiere(sud)
+		fillColorL(listeLumiere, 100, getCouleur(couleur[1]))
 	else:
-		lumiere(ouestT).fillColor(getCouleur(couleur[3]))
-		lumiere(nord).fillColor(getCouleur(couleur[2]))
-		lumiere(estT).fillColor(getCouleur(couleur[1]))
-		lumiere(sud).fillColor(getCouleur(couleur[0]))
+		listeLumiere = lumiere(ouestT)
+		fillColorL(listeLumiere, 100, getCouleur(couleur[3]))
+		listeLumiere = lumiere(nord)
+		fillColorL(listeLumiere, 100, getCouleur(couleur[0]))
+		listeLumiere = lumiere(estT)
+		fillColorL(listeLumiere, 100, getCouleur(couleur[1]))
+		listeLumiere = lumiere(sud)
+		fillColorL(listeLumiere, 100, getCouleur(couleur[2]))
 
 
 def stop():
@@ -61,7 +78,9 @@ def calculPourcentage(pourcentage, rgb):
 
 def lumiere(listeIp):
 	tmp = []
+	print(listeIp)
 	for ip in listeIp:
+
 		tmp.append(Laumio(ip))
 	return tmp
 

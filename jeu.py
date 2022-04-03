@@ -2,7 +2,6 @@ import cv2
 import os
 import podsController
 import lightsController
-
 # Others variables
 colorPad = []
 target = 0
@@ -12,7 +11,7 @@ colors = ["Blanc", "Jaune", "Rouge", "Bleu", "Vert"]
 questions = [{}, {}, {}, {}, {}]
 
 # All pods
-pods = [45]
+pods = [17]
 
 # Data of teams
 teams = [{"color": None, "points": 0}, {"color": None, "points": 0}, {"color": None, "points": 0}, {"color": None, "points": 0}]
@@ -32,6 +31,7 @@ while True:
     else:
         if teams[0]['color'] is None:
             detectedPods = podsController.detect(img)
+            print(detectedPods)
             if len(detectedPods) == 1 and detectedPods[0] == pods[0]:
                 img, colorPad, target, angle = podsController.colorPod(img, colorPad, target)
 
