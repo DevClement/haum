@@ -13,10 +13,10 @@ def register(img, pods):
         if len(pods) == 0:
             print("Enregistrement du pod couleur")
             pods.append(ids[0][0])
-        elif len(pods) <= 1 or len(pods) > 4:
+        elif len(pods) < 5:
             print("Enregistrement du pod equipe")
             pods.append(ids[0][0])
-        elif len(pods) <= 5 or len(pods) > 9:
+        elif len(pods) <= 9:
             print("Enregistrement du pod question")
             pods.append(ids[0][0])
         elif len(pods) == 10:
